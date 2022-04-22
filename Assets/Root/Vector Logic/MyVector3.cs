@@ -29,6 +29,7 @@ public struct MyVector3
      * - MAGNITUD DEL VECTOR
      * - PRODUCTO PUNTO
      * - PRODUCTO CRUZ
+     * - DISTANCIA ENTRE VECTORES
      */
     public static MyVector3 Normalizar(MyVector3 vector)
     {
@@ -50,6 +51,7 @@ public struct MyVector3
         this = cero;
     }
 
+    // LA DISTANCIA ENTRE 3 VECTORES
     public static float Distancia(MyVector3 vector1, MyVector3 vector2)
     {
         var newX = vector1.x - vector2.x;
@@ -77,8 +79,8 @@ public struct MyVector3
      * ESTOS MIEMBROS SON DE SOLO LECTURA, ES DECIR NO SE PUEDE VOLVER A ESCRIBIR SOBRE ELLOS
      * UNA VEZ INICIALIZADA SU INSTANCIA.
      * 
-     * AL SERT ALGUNOS MIEMBROS DE TIPO "static" GARANTIZAS POR PARTE DEL CÓDIGO QUE SOLO EXISTIRA
-     * _UNA_ SOLA INSTANCIA DEL TIPO, POR LO QUE SOLO SE INICIALIZA 1 VEZ Y ESE VALOR SE MANTENDRÁ PARA SIEMPRE
+     * AL SER ALGUNOS MIEMBROS DE TIPO "static" GARANTIZAS POR PARTE DEL CÓDIGO QUE SOLO EXISTIRA
+     * *UNA* SOLA INSTANCIA DEL TIPO, POR LO QUE SOLO SE INICIALIZA 1 VEZ Y ESE VALOR SE MANTENDRÁ PARA SIEMPRE
      * 
      */
 
