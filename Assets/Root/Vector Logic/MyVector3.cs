@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public struct MyVector3
@@ -19,6 +20,9 @@ public struct MyVector3
         this.x = x;
         this.y = y;
         this.z = z;
+
+        _builder = default;
+        _builder = CreateBuilder();
     }
 
     /* METODOS PARA CALCULOS DE VECTORES */
@@ -73,6 +77,28 @@ public struct MyVector3
                             (vector1.x * vector2.y) - (vector1.y * vector2.x));
     }
 
+    #region INDEXER
+    // ESTO ES UN "indexer" ES UNA MANERA DE USAR LA ESTRUCTURA CON INDICADORES DE POSICION
+    // PARA PODER AGARRAR UN VALOR DEL MISMO, POR EJEMPLO:
+    /* 
+     * MyVector3 v = new MyVector3(1,2,3);
+     * v[0]; (DEVOLVERA 1)
+    */
+    public float this[int index]
+    {
+        get
+        {
+            return index switch
+            {
+                0 => x,
+                1 => y,
+                2 => z,
+                _ => throw new System.IndexOutOfRangeException("No existe un componente con ese index")
+            };
+        }
+    }
+    #endregion
+
     #region MIEMBROS_SOLO_LECTURA
     /*
      * 
@@ -88,6 +114,7 @@ public struct MyVector3
     private static readonly MyVector3 vectorCero = new MyVector3(0, 0);
     #endregion
 
+    //ESTA REGIÓN DIVIDE LOS OPERADORES LOGICOS PARA PODER HACER OPERACIONES ENTRE TIPOS DE DATOS
     #region OPERADORES
     #region OPERADORES_GENERALES
     /*
@@ -110,25 +137,21 @@ public struct MyVector3
      *  ESTOS OPERADORES SIRVEN SOLO PARA UNIDADES ESCALARES, ES DECIR
      *  "float", ESTOS OPERADORES NO PUEDEN SER USADOS ENTRE VECTORES   
      */
-    public static MyVector3 operator +(MyVector3 vector, float valor)
-    {
-        return new MyVector3(vector.x + valor, vector.y + valor, vector.z + valor);
-    }
+    public static MyVector3 operator +(MyVector3 vector, float valor) => new MyVector3(vector.x + valor, vector.y + valor, vector.z + valor);
 
-    public static MyVector3 operator -(MyVector3 vector, float valor)
-    {
-        return new MyVector3(vector.x - valor, vector.y - valor, vector.z - valor);
-    }
+    public static MyVector3 operator +(float valor, MyVector3 vector) => vector + valor;
 
-    public static MyVector3 operator *(MyVector3 vector, float valor)
-    {
-        return new MyVector3(vector.x * valor, vector.y * valor, vector.z * valor);
-    }
+    public static MyVector3 operator -(MyVector3 vector, float valor) => new MyVector3(vector.x - valor, vector.y - valor, vector.z - valor);
 
-    public static MyVector3 operator /(MyVector3 vector, float valor)
-    {
-        return new MyVector3(vector.x / valor, vector.y / valor, vector.z / valor);
-    }
+    public static MyVector3 operator -(float valor, MyVector3 vector) => vector - valor;
+
+    public static MyVector3 operator *(MyVector3 vector, float valor) => new MyVector3(vector.x * valor, vector.y * valor, vector.z * valor);
+
+    public static MyVector3 operator *(float valor, MyVector3 vector) => vector * valor;
+
+    public static MyVector3 operator /(MyVector3 vector, float valor) => new MyVector3(vector.x / valor, vector.y / valor, vector.z / valor);
+
+    public static MyVector3 operator /(float valor, MyVector3 vector) => vector / valor;
     #endregion
 
     #region OPERADORES_VECTORIALES
@@ -153,5 +176,25 @@ public struct MyVector3
         return new MyVector3(vector1.x * vector2.x, vector1.y * vector2.y, vector1.z * vector2.z);
     }
     #endregion
+    #endregion
+
+    #region TO_STRING
+    //SOBRESCRITURA DEL METODO "ToString()" PARA PODER IMPRIMIR EN CONSOLA
+    // SE USA LA CLASE STRINGBUILDER PARA GENERAR EL STRING DE NUESTRO VECTOR3
+    private readonly StringBuilder _builder;
+    private StringBuilder CreateBuilder()
+    {
+        var builder = new StringBuilder("MyVector()");
+        for (int i = 0; i < 3; i++)
+        {
+            builder.Insert(builder.Length - 1, i < 2 ? this[i].ToString() + "," : this[i].ToString());
+        }
+
+        return builder;
+    }
+    public override string ToString()
+    {
+        return _builder.ToString();
+    }
     #endregion
 }
