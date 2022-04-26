@@ -117,6 +117,15 @@ public struct MyVector3
     private static readonly MyVector3 vectorCero = new MyVector3(0, 0);
     #endregion
 
+    #region DECONSTRUCT
+    public void Deconstruct(out float x, out float y, out float z)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+    }
+    #endregion
+
     //ESTA REGIÓN DIVIDE LOS OPERADORES LOGICOS PARA PODER HACER OPERACIONES ENTRE TIPOS DE DATOS
     #region OPERADORES
     #region OPERADORES_GENERALES
@@ -129,7 +138,11 @@ public struct MyVector3
     {
         return new MyVector3(-vector.x, -vector.y, -vector.z);
     }
+
+    public static explicit operator Vector3(MyVector3 v) => new Vector3(v.x,v.y,v.z);
+    public static explicit operator MyVector3(Vector3 v) => new MyVector3(v.x, v.y, v.z);
     #endregion
+
 
     #region OPERADORES_ESCALARES
     /*
