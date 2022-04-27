@@ -5,41 +5,43 @@ using UnityEngine;
 public class WaveSystem : MonoBehaviour
 {
 
-  
+    public float spawnTime;  
     public GameObject[] enemy;
     public  Transform[] gates ;
     public Transform[] inicialPosition;
-  
+    public CollisionSystem col = new CollisionSystem();  
 
-    void Update()
-    {
-        
-            StartCoroutine(Invocation());
-            
-            
-          
+    void Start()
+    {      
+            StartCoroutine(Invocation()); 
     }
 
+    private void Awake()
+    {
+
+
+        col = GetComponent<CollisionSystem>();
+    }
 
     IEnumerator Invocation()
     {
         int counter = 0;
         GameObject actualObject;
-        for (int i = 0; i <= Globals.waves[Globals.level].Count; i++)
+        for (int i = 0; i <= Globals.waves[Globals.level].Count-1; i++)
 
         {
-            for (int j = 0; j <= Globals.waves[Globals.level][i][2]; j++)
+            for (int j = 0; j <= Globals.waves[Globals.level][i][2]-1; j++)
             {
 
-               Instantiate(enemy[Globals.waves[Globals.level][i][1]], gates[counter].position, Quaternion.identity);
-
-                //actualObject.GetComponent<Enemy>().inicialPosition = inicialPosition[counter];
-                //Globals.enemies.Add(actualObject);
+                actualObject=Instantiate(enemy[Globals.waves[Globals.level][i][1]], gates[counter].position, Quaternion.identity);
+                col.enemies.Add(actualObject);
+                actualObject.GetComponent<Enemy>().inicialPosition = inicialPosition[counter];
+               
 
 
                 counter++;
                 if (counter > 3) counter = 0;
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(spawnTime);
             }
             yield return new WaitForSeconds(Globals.waves[Globals.level][i][0]);
             Debug.Log("espera");

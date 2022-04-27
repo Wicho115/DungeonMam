@@ -193,7 +193,6 @@ GameObject:
   m_Component:
   - component: {fileID: 138628542}
   - component: {fileID: 138628541}
-  - component: {fileID: 138628543}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -227,18 +226,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &138628543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 138628540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f73f790b7e4b4b419762056bbde9d36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &415346493
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 853423461}
   - component: {fileID: 853423460}
+  - component: {fileID: 853423462}
   m_Layer: 0
   m_Name: WaveSystem
   m_TagString: Untagged
@@ -421,6 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aa0d6796b99bb4d8979b3a933eead6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnTime: 0.5
   enemy:
   - {fileID: 3419502832338532271, guid: 1cbd446bc37532b419cfdf4f1b662b40, type: 3}
   - {fileID: 5113848398811710538, guid: 37771dcc809de2e4bafa08b65d667030, type: 3}
@@ -434,6 +423,7 @@ MonoBehaviour:
   - {fileID: 1147950477}
   - {fileID: 757723258}
   - {fileID: 119669610}
+  col: {fileID: 853423462}
 --- !u!4 &853423461
 Transform:
   m_ObjectHideFlags: 0
@@ -448,6 +438,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &853423462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853423459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a227b3b6d5d67cf45a0a8ebe87372079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
+  player: {fileID: 0}
+  bullets: []
+  enemiesBullets: []
 --- !u!1 &1114385728
 GameObject:
   m_ObjectHideFlags: 0

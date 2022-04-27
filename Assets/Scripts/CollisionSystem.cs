@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CollisionSystem : MonoBehaviour
 {
+    public List<GameObject> enemies = new List<GameObject>();
+    public GameObject player;
+    public List<GameObject> bullets = new List<GameObject>();
+    public List<GameObject> enemiesBullets = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +19,8 @@ public class CollisionSystem : MonoBehaviour
     {
         
     }
+
+   
 
     public void CollisionCheck()
     {
