@@ -18,6 +18,10 @@ public struct MyQuaternion
 
     public MyVector3 Vector;
 
+    public static MyQuaternion identidad => _identidad;
+    private static readonly MyQuaternion _identidad = new MyQuaternion(1,0,0,0);
+
+    private MyQuaternion conjugado => Conjugar(this);
 
     public MyQuaternion(float w, MyVector3 vector)
     {
@@ -27,14 +31,78 @@ public struct MyQuaternion
         y = vector.y;
         z = vector.z;
 
-        this.Vector = vector;
+        Vector = vector;
         _builder = default;
         _builder = CreateBuilder();
     }
 
-
     public MyQuaternion(float w, float x, float y, float z) : this(w, new MyVector3(x, y, z)){}
 
+    public static MyQuaternion AngleRotation(float angle, AngleAxis angleAxis)
+    {
+        var radAngle = Mathf.Deg2Rad * (angle / 2f);
+        var newW = Mathf.Cos(radAngle);
+        var newVector = angleAxis.axis;
+        newVector *= Mathf.Sin(radAngle);
+
+        return new MyQuaternion(newW, newVector);
+    }
+
+    //ROTA UN PUNTO Y A TRAVES DE UN QUATERNION
+    public MyVector3 Rotate(MyVector3 v) => Rotate(this, v);
+    public static MyVector3 Rotate(MyQuaternion q, MyVector3 v)
+    {
+        var vectorQuaternion = new MyQuaternion(0, v);
+        var newq = q * vectorQuaternion * q.conjugado;
+
+        return newq.Vector;
+
+        /* 
+         * Useless?
+         * 
+        var (x, y, z) = v;
+        var (qX, qY, qZ, w) = q;
+
+        var doubleX = qX * 2f;
+        var doubleY = qY * 2f;
+        var doubleZ = qZ * 2f;
+
+        var doublePowX = doubleX * qX;
+        var doublePowY = doubleY * qY;
+        var doublePowZ = doubleZ * qZ;
+
+        var xy2 = doubleX * qY;
+        var xz2 = doubleX * qZ;
+        var yz2 = doubleY * qZ;
+        var wx2 = doubleX * w;
+        var wz2 = doubleZ * w;
+        var wy2 = doubleY * w;
+
+        var newX = ((1 - doublePowY - doublePowZ) * x) + ((xy2 - wy2) * y) + ((xz2 + wy2) * z);
+        var newY = ((xy2 + wz2) * x) + ((1 - doublePowX - doublePowZ) * y) + ((yz2 - wx2) * z);
+        var newZ = ((xz2 - wy2) * x) + ((yz2+wx2) * y) + ((1 - doublePowX - doublePowY) * z);
+        return new MyVector3(newX, newY, newZ);
+        */
+    }
+
+
+    #region METODOS_ESTATICOS
+    public static MyQuaternion Conjugar(MyQuaternion q)
+    {
+        return new MyQuaternion(q.w, -q.Vector);
+    }
+
+    #endregion
+
+    #region DECONSTRUCT
+    public void Deconstruct(out float x, out float y, out float z, out float w)
+    {
+        x = this.x;
+        y = this.y;
+        z = this.z;
+        w = this.w;
+    }
+    #endregion
 
     #region INDEXER
     // ESTO ES UN "indexer" ES UNA MANERA DE USAR LA ESTRUCTURA CON INDICADORES DE POSICION
@@ -67,6 +135,10 @@ public struct MyQuaternion
         var newW = (q1.w * q2.w) - MyVector3.ProductoPunto(q1.Vector, q2.Vector);
         return new MyQuaternion(newW, newVector);
     }
+
+    public static explicit operator Quaternion(MyQuaternion q) => new Quaternion(q.x,q.y,q.z,q.w);
+    public static explicit operator MyQuaternion(Quaternion q) => new MyQuaternion(q.w, q.x, q.y, q.z);
+
     #endregion
 
     #region TO_STRING
