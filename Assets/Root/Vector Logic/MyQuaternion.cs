@@ -52,14 +52,13 @@ public struct MyQuaternion
     public MyVector3 Rotate(MyVector3 v) => Rotate(this, v);
     public static MyVector3 Rotate(MyQuaternion q, MyVector3 v)
     {
+        /*
         var vectorQuaternion = new MyQuaternion(0, v);
         var newq = q * vectorQuaternion * q.conjugado;
 
         return newq.Vector;
-
-        /* 
-         * Useless?
-         * 
+*/
+       
         var (x, y, z) = v;
         var (qX, qY, qZ, w) = q;
 
@@ -82,7 +81,7 @@ public struct MyQuaternion
         var newY = ((xy2 + wz2) * x) + ((1 - doublePowX - doublePowZ) * y) + ((yz2 - wx2) * z);
         var newZ = ((xz2 - wy2) * x) + ((yz2+wx2) * y) + ((1 - doublePowX - doublePowY) * z);
         return new MyVector3(newX, newY, newZ);
-        */
+        
     }
 
 
@@ -127,7 +126,7 @@ public struct MyQuaternion
     }
     #endregion
 
-    //ESTA REGIÓN DIVIDE LOS OPERADORES LOGICOS PARA PODER HACER OPERACIONES ENTRE TIPOS DE DATOS
+    //ESTA REGIï¿½N DIVIDE LOS OPERADORES LOGICOS PARA PODER HACER OPERACIONES ENTRE TIPOS DE DATOS
     #region OPERADORES
     public static MyQuaternion operator *(MyQuaternion q1, MyQuaternion q2)
     {

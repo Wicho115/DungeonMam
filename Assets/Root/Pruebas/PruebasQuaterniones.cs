@@ -7,25 +7,30 @@ using UnityEngine;
 
 public class PruebasQuaterniones : MonoBehaviour
 {
-    public GameObject[] objects;
     MyQuaternion q;
-    MyQuaternion suma;
+
+    Mesh mesh;
+    Vector3[] vertices;
     //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     void Start()
     {
-        q = MyQuaternion.AngleRotation(10, AngleAxis.z);
-        q *= MyQuaternion.AngleRotation(5, AngleAxis.y);
+        q = MyQuaternion.AngleRotation(10, AngleAxis.y);
+        //q *= MyQuaternion.AngleRotation(5, AngleAxis.y);
+
+        mesh = GetComponent<MeshFilter>().mesh;
+        vertices = mesh.vertices;
     }
 
     private void Update()
     {
 
-        for (int i = 0; i < objects.Length; i++)
+        for (int i = 0; i < vertices.Length; i++)
         {
-            MyVector3 pos = (MyVector3)objects[i].transform.localPosition;
+            MyVector3 pos = (MyVector3)vertices[i];
             pos = q.Rotate(pos);
-            objects[i].transform.localPosition = (Vector3)pos;
+            vertices[i] = (Vector3)pos;
         }
 
+        mesh.vertices = vertices;
     }
 }
