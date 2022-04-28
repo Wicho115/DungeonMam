@@ -14,8 +14,8 @@ public class PruebasQuaterniones : MonoBehaviour
     //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     void Start()
     {
-        q = MyQuaternion.AngleRotation(10, AngleAxis.y);
-        //q *= MyQuaternion.AngleRotation(5, AngleAxis.y);
+        q = MyQuaternion.AngleRotation(10, AngleAxis.z);
+        q *= MyQuaternion.AngleRotation(5, AngleAxis.y);
 
         mesh = GetComponent<MeshFilter>().mesh;
         vertices = mesh.vertices;
