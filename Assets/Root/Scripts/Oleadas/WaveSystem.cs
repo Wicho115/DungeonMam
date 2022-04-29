@@ -9,8 +9,8 @@ public class WaveSystem : MonoBehaviour
     public GameObject[] enemy;
     public  Transform[] gates ;
     public Transform[] inicialPosition;
-    public CollisionSystem col = new CollisionSystem();  
-
+    public CollisionSystem col;
+   
     void Start()
     {      
             StartCoroutine(Invocation()); 
@@ -41,11 +41,19 @@ public class WaveSystem : MonoBehaviour
 
                 counter++;
                 if (counter > 3) counter = 0;
+                
                 yield return new WaitForSeconds(spawnTime);
             }
+            if (col.enemies.Count==0) Debug.Log("Lista vac�a");
             yield return new WaitForSeconds(Globals.waves[Globals.level][i][0]);
+            
+
             Debug.Log("espera");
         }
     }
 
+    private void Update()
+    {
+        
+    }
 }
