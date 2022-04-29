@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Oscar
+
 public class CollisionSystem : MonoBehaviour
 {
-    public List<GameObject> enemies;
+    public List<GameObject> enemies = new List<GameObject>();
     public GameObject player;
-    public List<GameObject> bullets;
-    public List<GameObject> enemiesBullets;
+    public List<GameObject> bullets = new List<GameObject>();
+    public List<GameObject> enemiesBullets = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,7 @@ public class CollisionSystem : MonoBehaviour
             //Debug.Log(col + "  " +i);
             if (col <= 1)
             {
-                Debug.Log("Colisión con enemigo no:" + i);
+                Debug.Log("Colisiï¿½n con enemigo no:" + i);
 
                 Destroy(enemies[i]);
                 enemies.RemoveAt(i);
@@ -51,7 +52,7 @@ public class CollisionSystem : MonoBehaviour
             //Debug.Log(col + "  " +i);
             if (col <= 1)
             {
-                Debug.Log("Colisión con enemigo no:" + i);
+                Debug.Log("Colisiï¿½n con enemigo no:" + i);
 
             }
         }
@@ -67,7 +68,7 @@ public class CollisionSystem : MonoBehaviour
             //Debug.Log(col + "  " +i);
             if (col <= 1)
             {
-                Debug.Log("Colisión con enemigo no:" + i);
+                Debug.Log("Colisiï¿½n con enemigo no:" + i);
                     Destroy(enemies[i]);
                     enemies.RemoveAt(i);
                 }

@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
     {
         col = GetComponent<CollisionSystem>();
 
-
     }
 
     // Update is called once per frame
@@ -19,5 +18,4 @@ public class Enemy : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, inicialPosition.position, 1 * Time.deltaTime);
     }
-
 }

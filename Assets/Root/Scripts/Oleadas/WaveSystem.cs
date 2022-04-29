@@ -44,9 +44,10 @@ public class WaveSystem : MonoBehaviour
                 
                 yield return new WaitForSeconds(spawnTime);
             }
-            if (col.enemies.Count==0) Debug.Log("Lista vacía");
+            if (col.enemies.Count==0) Debug.Log("Lista vacï¿½a");
             yield return new WaitForSeconds(Globals.waves[Globals.level][i][0]);
             
+
             Debug.Log("espera");
         }
     }
@@ -55,5 +56,4 @@ public class WaveSystem : MonoBehaviour
     {
         
     }
-
 }
