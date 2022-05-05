@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5272162825102175508}
   - component: {fileID: 5272162825102175509}
-
   - component: {fileID: 7370194310831072769}
   - component: {fileID: 1175488573}
 
@@ -20,7 +19,6 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-
   m_IsActive: 1
 --- !u!4 &5272162825102175508
 Transform:
