@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5272162825102175509}
   - component: {fileID: 7370194310831072769}
   - component: {fileID: 1175488573}
-
   m_Layer: 0
   m_Name: Pirata3
   m_TagString: Untagged
@@ -59,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7837365b675dc14bb5f164b63d6b510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeFrame: 0
+  _timeFrame: 0.3
 --- !u!114 &1175488573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7837365b675dc14bb5f164b63d6b510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeFrame: 0
+  _timeFrame: 0.3
 --- !u!114 &1770169300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f51c127c8e4864090a83684f3dddc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualAnimation: {fileID: 0}
+  actualAnimation: {fileID: 7218754618971948810}
 --- !u!1 &5272162826121718882
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7837365b675dc14bb5f164b63d6b510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeFrame: 0
+  _timeFrame: 0.3
 --- !u!114 &1940092521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7837365b675dc14bb5f164b63d6b510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeFrame: 0
+  _timeFrame: 0.3
 --- !u!114 &1268865452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,4 +376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b457a75547f216c4699f81ff62ba4ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frames: []
+  _frames:
+  - {fileID: 543397103837100457}
+  - {fileID: 7454800122626474527}
+  - {fileID: 1450166981273848852}
+  - {fileID: 7370194310831072769}
