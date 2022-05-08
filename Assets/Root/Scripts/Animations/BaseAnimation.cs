@@ -33,9 +33,10 @@ public abstract class BaseAnimation : MonoBehaviour
     {
         for (int i = 0; i < frames.Count; i++)
         {
-            frames[i].ActivateFrame();
-            yield return new WaitForSeconds(frames[i].timeFrame);
-            frames[i].DeactivateFrame();
+            var frame = frames[i];
+            frame.ActivateFrame();
+            yield return new WaitForSeconds(frame.timeFrame);
+            frame.DeactivateFrame();
         }
     }
 }
