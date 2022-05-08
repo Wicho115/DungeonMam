@@ -48,7 +48,7 @@ public class WaveSystem : MonoBehaviour
             yield return new WaitForSeconds(Globals.waves[Globals.level][i][0]);
             
 
-            Debug.Log("espera");
+            
         }
     }
 

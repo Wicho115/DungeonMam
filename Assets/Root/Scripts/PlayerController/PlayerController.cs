@@ -11,10 +11,10 @@ public class PlayerController : MonoBehaviour
     public Transform shootPoint;
     public CollisionSystem col;
     public GameObject bullet;
-    public float delay;
+    public bool damaged;
     void Start()
     {
-      
+        damaged = false;
     }
 
     // Update is called once per frame
@@ -29,6 +29,18 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
+        if (damaged) StartCoroutine(Damaged());
+    }
+
+    public IEnumerator Damaged()
+    {
+        
+        Globals.life--;
+        Debug.Log("life:" + Globals.life);
+        yield return new WaitForSeconds(2f);
+        damaged = false;
+
+
     }
 
     void Shoot()

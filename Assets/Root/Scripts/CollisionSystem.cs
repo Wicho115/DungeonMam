@@ -9,10 +9,11 @@ public class CollisionSystem : MonoBehaviour
     public GameObject player;
     public List<GameObject> bullets = new List<GameObject>();
     public List<GameObject> enemiesBullets = new List<GameObject>();
+    PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ public class CollisionSystem : MonoBehaviour
         EnemyCollition();
         EnemyBulletCollition();
         BulletCollition();
-        Debug.Log(enemies.Count);
+       
     }
 
     private void EnemyCollition()
@@ -31,13 +32,15 @@ public class CollisionSystem : MonoBehaviour
             float col;
            
             col = Distance(player.transform, enemies[i].transform);
-            //Debug.Log(col + "  " +i);
-            if (col <= 1)
+           
+            if (col <= 1.5 && !playerController.damaged)
             {
-                Debug.Log("Colisi�n con enemigo no:" + i);
+                playerController.damaged = true;
+               
+                Debug.Log("Damaged");
 
+            } 
 
-            }
         }
     }
 
