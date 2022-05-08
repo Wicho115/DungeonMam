@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
         GameObject actualObject;
         actualObject = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         col.bullets.Add(actualObject);
-        actualObject.GetComponent<Bullet>().isActivated = true;
+       
     
         
     }

@@ -69,6 +69,9 @@ public class CollisionSystem : MonoBehaviour
                 Debug.Log("Colision con bala" + i);
                     Destroy(enemies[i]);
                     enemies.RemoveAt(i);
+
+                    Destroy(bullets[j]);
+                    bullets.RemoveAt(j);
                 }
         }
         }

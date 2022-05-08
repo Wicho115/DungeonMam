@@ -30,7 +30,7 @@ public class WaveSystem : MonoBehaviour
         for (int i = 0; i <= Globals.waves[Globals.level].Count-1; i++)
 
         {
-            for (int j = 0; j <= Globals.waves[Globals.level][i][2]-1; j++)
+            for (int j = 0; j <= Globals.waves [Globals.level][i][2]-1; j++)
             {
 
                 actualObject = Instantiate(enemy[Globals.waves[Globals.level][i][1]], gates[counter].position, (Quaternion)MyQuaternion.identidad);
