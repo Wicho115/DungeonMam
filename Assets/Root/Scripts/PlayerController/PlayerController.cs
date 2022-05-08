@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
     float horizontal;
     float vertical;
     public float speed;
+    public Transform shootPoint;
+    public CollisionSystem col;
+    public GameObject bullet;
+    public float delay;
     void Start()
     {
       
@@ -20,6 +24,21 @@ public class PlayerController : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         Movement();
         PlayerRotation();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+        }
+    }
+
+    void Shoot()
+    {
+        GameObject actualObject;
+        actualObject = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
+        col.bullets.Add(actualObject);
+        actualObject.GetComponent<Bullet>().isActivated = true;
+    
+        
     }
 
     void Movement()
@@ -35,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90.0f;
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, -angle, 0));
+        transform.rotation =(Quaternion) MyQuaternion.AngleRotation(-angle, AngleAxis.y);
+            
     }
 }

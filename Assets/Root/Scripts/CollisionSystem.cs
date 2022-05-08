@@ -36,8 +36,6 @@ public class CollisionSystem : MonoBehaviour
             {
                 Debug.Log("Colisi�n con enemigo no:" + i);
 
-                Destroy(enemies[i]);
-                enemies.RemoveAt(i);
 
             }
         }
@@ -66,9 +64,9 @@ public class CollisionSystem : MonoBehaviour
                 float col;
             col = Distance(bullets[j].transform, enemies[i].transform);
             //Debug.Log(col + "  " +i);
-            if (col <= 1)
+            if (col <= 0.75)
             {
-                Debug.Log("Colisi�n con enemigo no:" + i);
+                Debug.Log("Colision con bala" + i);
                     Destroy(enemies[i]);
                     enemies.RemoveAt(i);
                 }
