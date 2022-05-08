@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Damaged()
     {
-        
+        damaged = true;
         Globals.life--;
         Debug.Log("life:" + Globals.life);
         yield return new WaitForSeconds(2f);

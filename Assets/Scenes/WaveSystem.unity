@@ -417,7 +417,7 @@ MonoBehaviour:
   spawnTime: 0.5
   enemy:
   - {fileID: 4466493585722140236, guid: afec494fecef5b34ebe8ad633dcef1c7, type: 3}
-  - {fileID: 4466493585722140236, guid: afec494fecef5b34ebe8ad633dcef1c7, type: 3}
+  - {fileID: 4425126588508496962, guid: 32b81ce9e95c9f84b9e6c2587238ebd3, type: 3}
   gates:
   - {fileID: 1320619700}
   - {fileID: 3109691}

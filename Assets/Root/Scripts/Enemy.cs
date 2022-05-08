@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public Transform inicialPosition;
     public CollisionSystem col;
     public GameObject target;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +17,11 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        transform.LookAt(target.transform);
-      
+        
        
+
         agent.destination = target.transform.position;
     }
 }

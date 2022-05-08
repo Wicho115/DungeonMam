@@ -27,33 +27,37 @@ public class CollisionSystem : MonoBehaviour
 
     private void EnemyCollition()
     {
-        for (int i = 0; i <= enemies.Count - 1; i++)
+        lock (enemies)
         {
-            float col;
-           
-            col = Distance(player.transform, enemies[i].transform);
-           
-            if (col <= 1.5 && !playerController.damaged)
+
+            for (int i = 0; i < enemies.Count; i++)
             {
-                playerController.damaged = true;
-               
-                Debug.Log("Damaged");
+                float col;
 
-            } 
+                col = Distance(player.transform, enemies[i].transform);
 
+                if (col <= 1.5 && !playerController.damaged)
+                {
+
+
+                    StartCoroutine(playerController.Damaged());
+
+                }
+
+            }
         }
     }
 
     private void EnemyBulletCollition()
     {
-        for (int i = 0; i <= enemiesBullets.Count - 1; i++)
+        for (int i = 0; i < enemiesBullets.Count ; i++)
         {
             float col;
             col = Distance(player.transform, enemiesBullets[i].transform);
             //Debug.Log(col + "  " +i);
             if (col <= 1)
             {
-                Debug.Log("Colisi�n con enemigo no:" + i);
+               
 
             }
         }
@@ -61,21 +65,30 @@ public class CollisionSystem : MonoBehaviour
 
     private void BulletCollition()
     {
-        for (int i = 0; i <= enemies.Count - 1; i++)
-        {
-            for (int j = 0; j <= bullets.Count - 1; j++) { 
-                float col;
-            col = Distance(bullets[j].transform, enemies[i].transform);
-            //Debug.Log(col + "  " +i);
-            if (col <= 0.75)
+        lock (enemies) { 
+        lock (bullets) { 
+            for (int i = 0; i < enemies.Count; i++)
             {
-                Debug.Log("Colision con bala" + i);
-                    Destroy(enemies[i]);
-                    enemies.RemoveAt(i);
+                for (int j = 0; j < bullets.Count; j++)
+                {
+                    float col;
+                    col = Distance(bullets[j].transform, enemies[i].transform);
 
-                    Destroy(bullets[j]);
-                    bullets.RemoveAt(j);
+                    if (col <= 0.75)
+                    {
+
+                        var enemy = enemies[i];
+
+                        enemies.Remove(enemy);
+                        Destroy(enemy);
+
+                        var bullet = bullets[i];
+
+                        bullets.Remove(bullet);
+                        Destroy(bullet);
+                    }
                 }
+            }
         }
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet1 : MonoBehaviour
 {
     public float speed;
   
@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
 
         if (counter <= 0)
         {
-            col.bullets.Remove(gameObject);
+            col.enemiesBullets.Remove(gameObject);
             Destroy(gameObject);
         }
 

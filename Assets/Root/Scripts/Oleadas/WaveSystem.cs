@@ -30,13 +30,23 @@ public class WaveSystem : MonoBehaviour
         for (int i = 0; i <= Globals.waves[Globals.level].Count-1; i++)
 
         {
+            float time = Time.time;
+            float objectiveTime = time + Globals.waves[Globals.level][i][0];
             for (int j = 0; j <= Globals.waves [Globals.level][i][2]-1; j++)
             {
 
                 actualObject = Instantiate(enemy[Globals.waves[Globals.level][i][1]], gates[counter].position, (Quaternion)MyQuaternion.identidad);
                 col.enemies.Add(actualObject);
-                actualObject.GetComponent<Enemy>().inicialPosition = inicialPosition[counter];
-               
+
+                if (Globals.waves[Globals.level][i][1] == 0)
+                {
+                    actualObject.GetComponent<Enemy>().inicialPosition = inicialPosition[counter];
+                }
+
+                else if (Globals.waves[Globals.level][i][1] == 1)
+                {
+                    actualObject.GetComponent<Enemy2>().inicialPosition = inicialPosition[counter];
+                }
 
 
                 counter++;
@@ -44,8 +54,12 @@ public class WaveSystem : MonoBehaviour
                 
                 yield return new WaitForSeconds(spawnTime);
             }
-            if (col.enemies.Count==0) Debug.Log("Lista vac�a");
-            yield return new WaitForSeconds(Globals.waves[Globals.level][i][0]);
+
+            do {
+                time += Time.deltaTime;
+               
+                yield return null;
+            } while (time<objectiveTime&&col.enemies.Count>0);
             
 
             
