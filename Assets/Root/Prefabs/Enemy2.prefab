@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1014033709222454396}
   - component: {fileID: 6465880483533630822}
   - component: {fileID: 1183651776722707289}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inicialPosition: {fileID: 0}
+  col: {fileID: 0}
 --- !u!136 &6465880483533630822
 CapsuleCollider:
   m_ObjectHideFlags: 0

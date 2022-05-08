@@ -33,7 +33,7 @@ public class WaveSystem : MonoBehaviour
             for (int j = 0; j <= Globals.waves[Globals.level][i][2]-1; j++)
             {
 
-                actualObject=Instantiate(enemy[Globals.waves[Globals.level][i][1]], gates[counter].position, Quaternion.identity);
+                actualObject = Instantiate(enemy[Globals.waves[Globals.level][i][1]], gates[counter].position, (Quaternion)MyQuaternion.identidad);
                 col.enemies.Add(actualObject);
                 actualObject.GetComponent<Enemy>().inicialPosition = inicialPosition[counter];
                
