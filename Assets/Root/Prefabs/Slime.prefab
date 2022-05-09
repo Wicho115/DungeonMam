@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4466493585722140239}
+  - component: {fileID: 1755318438573251056}
   - component: {fileID: 4466493585722140238}
   - component: {fileID: 4466493585722140237}
-  - component: {fileID: 3545415147194456625}
   m_Layer: 10
   m_Name: Slime
   m_TagString: Untagged
@@ -34,6 +34,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1755318438573251056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466493585722140236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576ce7e0dc7db084182aad81cc44ab32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inicialPosition: {fileID: 0}
 --- !u!136 &4466493585722140238
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -70,21 +83,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3545415147194456625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4466493585722140236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 128b2d351a984974c868b61ec70fff1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inicialPosition: {fileID: 0}
-  col: {fileID: 0}
-  target: {fileID: 0}
 --- !u!1001 &6659386030563871758
 PrefabInstance:
   m_ObjectHideFlags: 0

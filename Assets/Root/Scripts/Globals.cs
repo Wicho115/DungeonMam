@@ -18,7 +18,5 @@ public static class Globals
 
     };
 
-    public static int life= 3;
-
-
+    public static int life = 3;
 }

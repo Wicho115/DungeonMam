@@ -13,7 +13,7 @@ public class Bullet1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        col = GameObject.Find("WaveSystem").GetComponent<CollisionSystem>();
+        col = CollisionSystem.Instance;
         dir = new Vector3(0, 0, 1);
     }
 

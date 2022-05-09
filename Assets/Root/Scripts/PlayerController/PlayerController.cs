@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool damaged;
     void Start()
     {
+        col = CollisionSystem.Instance;
         damaged = false;
     }
 
@@ -49,8 +50,6 @@ public class PlayerController : MonoBehaviour
         actualObject = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         col.bullets.Add(actualObject);
        
-    
-        
     }
 
     void Movement()

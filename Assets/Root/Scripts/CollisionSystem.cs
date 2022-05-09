@@ -5,14 +5,34 @@ using UnityEngine;
 
 public class CollisionSystem : MonoBehaviour
 {
-    public List<GameObject> enemies = new List<GameObject>();
-    public GameObject player;
+    public static CollisionSystem Instance;
+
+    public List<Enemy> enemies = new List<Enemy>();
     public List<GameObject> bullets = new List<GameObject>();
     public List<GameObject> enemiesBullets = new List<GameObject>();
+
+    private List<GameObject> bulletsToDestroy = new List<GameObject>();
+    private List<Enemy> enemiesToDestroy = new List<Enemy>();
+
+    public GameObject player;
     PlayerController playerController;
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        if(Instance is null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
     }
 
@@ -38,8 +58,6 @@ public class CollisionSystem : MonoBehaviour
 
                 if (col <= 1.5 && !playerController.damaged)
                 {
-
-
                     StartCoroutine(playerController.Damaged());
 
                 }
@@ -65,35 +83,49 @@ public class CollisionSystem : MonoBehaviour
 
     private void BulletCollition()
     {
-        lock (enemies) { 
-        lock (bullets) { 
-            for (int i = 0; i < enemies.Count; i++)
+        
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            for (int j = 0; j < bullets.Count; j++)
             {
-                for (int j = 0; j < bullets.Count; j++)
+                float col;
+                col = Distance(bullets[j].transform, enemies[i].transform);
+
+                if (col <= 0.75)
                 {
-                    float col;
-                    col = Distance(bullets[j].transform, enemies[i].transform);
 
-                    if (col <= 0.75)
-                    {
+                    enemiesToDestroy.Add(enemies[i]);
 
-                        var enemy = enemies[i];
-
-                        enemies.Remove(enemy);
-                        Destroy(enemy);
-
-                        var bullet = bullets[i];
-
-                        bullets.Remove(bullet);
-                        Destroy(bullet);
-                    }
+                    bulletsToDestroy.Add(bullets[j]);
                 }
             }
         }
-        }
+
+        DestroyEnemies();
+        DestroyBullets();
     }
 
+    void DestroyEnemies()
+    {
+        foreach (var enemy in enemiesToDestroy)
+        {
+            enemies.Remove(enemy);
+            Destroy(enemy.gameObject);
+        }
 
+        enemiesToDestroy.Clear();
+    }
+
+    void DestroyBullets()
+    {
+        foreach (var bullet in bulletsToDestroy)
+        {
+            bullets.Remove(bullet);
+            Destroy(bullet.gameObject);
+        }
+
+        bulletsToDestroy.Clear();
+    }
 
 
     public float Distance(Transform A,Transform B)

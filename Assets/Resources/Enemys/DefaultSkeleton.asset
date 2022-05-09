@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c698b31bf4ac1248aab46ae1f86696e, type: 3}
+  m_Name: DefaultSkeleton
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 6006121965838873195, guid: 32b81ce9e95c9f84b9e6c2587238ebd3, type: 3}
+  waitForSpawnSeconds: 1

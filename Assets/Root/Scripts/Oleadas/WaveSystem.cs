@@ -10,43 +10,29 @@ public class WaveSystem : MonoBehaviour
     public  Transform[] gates ;
     public Transform[] inicialPosition;
     public CollisionSystem col;
+    private void Awake()
+    {
+        col = CollisionSystem.Instance;
+    }
    
     void Start()
     {      
-            StartCoroutine(Invocation()); 
-    }
-
-    private void Awake()
-    {
-
-
-        col = GetComponent<CollisionSystem>();
+        StartCoroutine(Invocation()); 
     }
 
     IEnumerator Invocation()
     {
         int counter = 0;
         GameObject actualObject;
-        for (int i = 0; i <= Globals.waves[Globals.level].Count-1; i++)
-
+        for (int i = 0; i < Globals.waves[Globals.level].Count; i++)
         {
             float time = Time.time;
             float objectiveTime = time + Globals.waves[Globals.level][i][0];
-            for (int j = 0; j <= Globals.waves [Globals.level][i][2]-1; j++)
+            for (int j = 0; j < Globals.waves[Globals.level][i][2]; j++)
             {
-
                 actualObject = Instantiate(enemy[Globals.waves[Globals.level][i][1]], gates[counter].position, (Quaternion)MyQuaternion.identidad);
-                col.enemies.Add(actualObject);
+                //col.enemies.Add(actualObject);
 
-                if (Globals.waves[Globals.level][i][1] == 0)
-                {
-                    actualObject.GetComponent<Enemy>().inicialPosition = inicialPosition[counter];
-                }
-
-                else if (Globals.waves[Globals.level][i][1] == 1)
-                {
-                    actualObject.GetComponent<Enemy2>().inicialPosition = inicialPosition[counter];
-                }
 
 
                 counter++;
@@ -61,13 +47,7 @@ public class WaveSystem : MonoBehaviour
                 yield return null;
             } while (time<objectiveTime&&col.enemies.Count>0);
             
-
-            
         }
     }
 
-    private void Update()
-    {
-        
-    }
 }
