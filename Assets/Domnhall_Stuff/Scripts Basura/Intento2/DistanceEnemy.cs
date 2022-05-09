@@ -23,7 +23,7 @@ public class DistanceEnemy : MonoBehaviour
 
     private void Awake()
     {
-        
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         player = GameObject.Find("PlayerObj").transform;  //Obtenemos El transform del jugador.
         agent = GetComponent<NavMeshAgent>();//Obtenemeos el NavMesh del Objeto
     }
@@ -33,6 +33,11 @@ public class DistanceEnemy : MonoBehaviour
         //Toda esta parte servirá para que el enemigo persiga al jugador. Siempre estará activo un Rango para detectar si el jugador esta cerca para que sea atacado o no.
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer); 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        
+        //Para que mire al jugador por medio de Quaterniones ;)
+        Vector3 directiontoFace = player.transform.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(directiontoFace);
+
         Chase();
     }
 
@@ -47,7 +52,7 @@ public class DistanceEnemy : MonoBehaviour
     {
         //Estas 2 lineas hacen que el enemigo no se mueva mientras dispare
         agent.SetDestination(transform.position);
-        transform.LookAt(player);
+       
 
         //Esto sirve para que se inicie la secuencia de ataque
         if(!alreadyAttacked) 
