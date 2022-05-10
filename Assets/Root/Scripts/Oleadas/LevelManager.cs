@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     [Header("Level parameters")]
     [SerializeField, Range(1,7)] private int level;
+    [Space]
     [SerializeField] private Transform[] doors;
     [SerializeField] private Transform[] initialPos;
     
@@ -27,11 +28,13 @@ public class LevelManager : MonoBehaviour
     }
 
     private void Start() {
-        if(isStartActive) StartWave();
+        if(isStartActive) StartLevel();
     }
 
-    public void StartWave()
+    public void StartLevel()
     {
+        if (isActive) return;
+        isActive = true;
         actualWave = -1;
         NextWave();
     }

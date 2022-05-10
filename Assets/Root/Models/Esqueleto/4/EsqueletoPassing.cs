@@ -11,9 +11,9 @@ public class EsqueletoPassing : MonoBehaviour
 
     public Material material;
 
-    private Vector3[] verts;
-    private int[] triang;
-    private Vector2[] uvs0;
+    static private Vector3[] verts;
+    static private int[] triang;
+    static private Vector2[] uvs0;
 
     void Awake()
     {
@@ -22,10 +22,16 @@ public class EsqueletoPassing : MonoBehaviour
         m_Mesh = new Mesh();
         m_MeshFilter.mesh = m_Mesh;
 
-        Create();
+        m_Mesh.SetVertices(verts);
+        m_Mesh.triangles = triang;
+        m_Mesh.SetUVs(0, uvs0);
+        m_MeshRenderer.material = material;
+        m_Mesh.RecalculateNormals();
+
     }
 
-    void Create()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void Create()
     {
         verts = new Vector3[]
         {
@@ -1647,7 +1653,6 @@ new Vector3(-0.8f, 3.4f, -1.2f),
 new Vector3(-1.0f, 3.4f, 0.8f),
 new Vector3(-1.0f, 3.4f, -1.0f),
         };
-        m_Mesh.SetVertices(verts);
 
         triang = new int[]
         {
@@ -2712,7 +2717,6 @@ new Vector3(-1.0f, 3.4f, -1.0f),
 1610,1612,1615,
 1612,1616,1615,
         };
-        m_Mesh.triangles = triang;
 
         uvs0 = new Vector2[]
         {
@@ -4334,11 +4338,5 @@ new Vector2(0.0136719f, 0.5f),
 new Vector2(0.0136719f, 0.5f),
 new Vector2(0.0136719f, 0.5f),
         };
-
-        m_Mesh.SetUVs(0, uvs0);
-
-        m_MeshRenderer.material = material;
-
-        m_Mesh.RecalculateNormals();
     }
 }

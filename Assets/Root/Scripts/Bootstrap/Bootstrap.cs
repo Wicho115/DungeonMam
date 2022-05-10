@@ -11,6 +11,7 @@ public static class Bootstrap
         CreateObject<CollisionSystem>();
 
         //SE CRE GAME MANAGER
+        CreateObject<GameManager>();
     }
 
     public static void CreateObject<T>() where T : MonoBehaviour
