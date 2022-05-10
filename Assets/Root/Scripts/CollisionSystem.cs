@@ -47,6 +47,7 @@ public class CollisionSystem : MonoBehaviour
 
     private void EnemyCollition()
     {
+        
         lock (enemies)
         {
 
@@ -58,6 +59,7 @@ public class CollisionSystem : MonoBehaviour
 
                 if (col <= 1.5 && !playerController.damaged)
                 {
+                    Debug.Log(playerController.damaged);
                     StartCoroutine(playerController.Damaged());
 
                 }

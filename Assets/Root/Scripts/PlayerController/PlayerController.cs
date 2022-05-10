@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public CollisionSystem col;
     public GameObject bullet;
     public bool damaged;
+    public float life;
     void Start()
     {
         col = CollisionSystem.Instance;
@@ -30,14 +31,14 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
-        if (damaged) StartCoroutine(Damaged());
+        
     }
 
     public IEnumerator Damaged()
     {
         damaged = true;
-        Globals.life--;
-        Debug.Log("life:" + Globals.life);
+        life--;
+        Debug.Log("life:" + life);
         yield return new WaitForSeconds(2f);
         damaged = false;
 
