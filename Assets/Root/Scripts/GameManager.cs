@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class GameManager : MonoBehaviour
     private int actualLevel = -1;
 
     private bool isWaiting = false;
+
+    public static event Action DeadGame;
+    public static event Action WinGame;
 
     private void Awake()
     {
@@ -33,6 +38,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         NextLevel();
+        SoundManager.Instance.PlayBGMusic();
     }
 
     public void NextLevel()
@@ -40,12 +46,32 @@ public class GameManager : MonoBehaviour
         actualLevel++;
         if(actualLevel >= levels.Length)
         {
-            //TERMINA EL JUEGO
+            EndGameWin();
         }
         else
         {
             StartCoroutine(NextLevelCoroutine(levels[actualLevel]));
         }
+    }
+
+    public void RetryGame()
+    {
+        SceneManager.LoadScene("Niveles");
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("MenuPrincipal");
+    }
+
+    public void EndGameDead()
+    {
+       DeadGame?.Invoke();
+    }
+
+    public void EndGameWin()
+    {
+        WinGame?.Invoke();
     }
 
     private IEnumerator NextLevelCoroutine(LevelManager level)
