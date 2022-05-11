@@ -75,10 +75,10 @@ public class CollisionSystem : MonoBehaviour
             float col;
             col = Distance(player.transform, enemiesBullets[i].transform);
             //Debug.Log(col + "  " +i);
-            if (col <= 1)
+            if (col <= 1 && !playerController.damaged)
             {
-               
 
+                StartCoroutine(playerController.Damaged());
             }
         }
     }
