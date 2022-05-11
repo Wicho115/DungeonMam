@@ -1,20 +1,18 @@
 using System.Linq;
 using System.Collections;
 using UnityEngine;
+using System;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoBehaviour, IComparable
 {
     [Header("Level parameters")]
-    [SerializeField, Range(1,7)] private int level;
+    [SerializeField, Range(1, 6)] private int level;
     [Space]
     [SerializeField] private Transform[] doors;
     [SerializeField] private Transform[] initialPos;
     
     [Header("Level Active Parameters")]
     [SerializeField] private bool isActive;
-
-    [Header("Test fields")]
-    [SerializeField] private bool isStartActive;
     
     private Wave[] waves;
     private CollisionSystem col;
@@ -25,10 +23,6 @@ public class LevelManager : MonoBehaviour
     {
         col = CollisionSystem.Instance;
         waves = Resources.LoadAll<Wave>("Waves/Level" + level);
-    }
-
-    private void Start() {
-        if(isStartActive) StartLevel();
     }
 
     public void StartLevel()
@@ -60,8 +54,6 @@ public class LevelManager : MonoBehaviour
 
             actualEnemy.inicialPosition = initialPos[i % initialPos.Length];
         }
-
-        Debug.Log("ES " + (isLastWave ? "ULTIMA" : "NO ULTIMA"));
 
         if (isLastWave) yield return StartCoroutine(LastWaveCoroutine());
         else yield return StartCoroutine(DefaultWaveCoroutine(time, targetTime));
@@ -95,12 +87,25 @@ public class LevelManager : MonoBehaviour
     {
         actualWave++;
         if(actualWave >= waves.Length)
-        {
-            Debug.Log("Termin� el nivel");
+        { 
+            GameManager.Instance.NextLevel();
         }
         else
         {
             StartWave(waves[actualWave], actualWave == waves.Length - 1);
+        }
+    }
+
+    public int CompareTo(object obj)
+    {
+        if(obj is LevelManager)
+        {
+            var manager = (LevelManager)obj;
+            return manager.level > this.level ? -1 : 1;
+        }
+        else
+        {
+            return 1;
         }
     }
 }

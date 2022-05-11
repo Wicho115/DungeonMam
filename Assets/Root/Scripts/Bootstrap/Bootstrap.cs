@@ -7,11 +7,9 @@ public static class Bootstrap
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void BootstrapMethod()
     {
-        //Se crea el collisionSystem
-        CreateObject<CollisionSystem>();
+        
 
-        //SE CRE GAME MANAGER
-        CreateObject<GameManager>();
+        
     }
 
     public static void CreateObject<T>() where T : MonoBehaviour

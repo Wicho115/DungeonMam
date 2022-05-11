@@ -93,7 +93,7 @@ public class CollisionSystem : MonoBehaviour
                 float col;
                 col = Distance(bullets[j].transform, enemies[i].transform);
 
-                if (col <= 0.75)
+                if (col <= 0.85f)
                 {
 
                     enemiesToDestroy.Add(enemies[i]);
